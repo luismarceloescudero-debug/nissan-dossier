@@ -1323,6 +1323,46 @@ body.resumen section .note{display:none}
 .adv-p span{display:block; font-size:13.5px; color:var(--ink-3); margin-top:3px; line-height:1.45}
 .adv-p .advnote{grid-column:1/-1}
 @media (max-width:860px){.adv{grid-template-columns:1fr} .adv-g{grid-template-columns:repeat(20,1fr)} .ab{grid-template-columns:1fr} .ab span{text-align:left}}
+
+/* =====================================================================
+   v3i — zócalo de financiación y página aparte
+   ===================================================================== */
+body{padding-bottom:78px}
+.up{bottom:92px}
+.dock{position:fixed; left:50%; bottom:14px; transform:translateX(-50%); z-index:80; display:flex; align-items:center; gap:8px;
+  background:rgba(16,21,28,.96); backdrop-filter:blur(10px); border:1px solid var(--line-2); border-radius:999px; padding:8px 10px 8px 20px;
+  box-shadow:0 10px 34px rgba(0,0,0,.55); max-width:calc(100vw - 24px)}
+.dock-l{font-family:"JetBrains Mono",monospace; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); padding-right:6px; white-space:nowrap}
+.dock button{display:inline-flex; align-items:center; gap:9px; font-family:"IBM Plex Sans",system-ui,sans-serif; font-size:15.5px; font-weight:600; cursor:pointer;
+  color:var(--ink); background:var(--s3); border:1px solid var(--line-2); border-radius:999px; padding:11px 20px; white-space:nowrap; transition:background .2s,border-color .2s,color .2s}
+.dock button svg.i{width:18px; height:18px; color:var(--cian)}
+.dock button:hover,.dock button.on{background:var(--cian); border-color:var(--cian); color:#04131a}
+.dock button:hover svg.i,.dock button.on svg.i{color:#04131a}
+@media (max-width:640px){.dock{padding:7px 8px} .dock-l{display:none} .dock button{padding:10px 14px; font-size:14.5px}}
+
+.fin{position:fixed; inset:0; z-index:90; background:var(--bg); overflow-y:auto; animation:fade .25s ease both}
+.fin[hidden]{display:none!important}
+.fin-h{position:sticky; top:0; z-index:5; background:rgba(8,11,16,.96); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+.fin-h .wrap{display:flex; align-items:center; gap:18px; padding-block:12px; flex-wrap:wrap}
+.fin-tt{font-family:Anton,"Arial Narrow",sans-serif; font-weight:400; font-size:26px; letter-spacing:.03em; text-transform:uppercase; color:var(--ink)}
+.fin-t{display:flex; gap:6px; flex:1; flex-wrap:wrap}
+.fin-t button{display:inline-flex; align-items:center; gap:9px; font-family:"IBM Plex Sans",system-ui,sans-serif; font-size:16px; font-weight:600; cursor:pointer;
+  color:var(--ink-2); background:transparent; border:1px solid var(--line-2); border-radius:999px; padding:10px 20px; transition:all .2s}
+.fin-t button svg.i{width:18px; height:18px}
+.fin-t button:hover{color:var(--cian); border-color:var(--cian)}
+.fin-t button.on{background:var(--cian); border-color:var(--cian); color:#04131a}
+.fin-x{display:inline-flex; align-items:center; gap:8px; font-family:"JetBrains Mono",monospace; font-size:13px; font-weight:700; letter-spacing:.06em; cursor:pointer;
+  color:var(--ink); background:var(--s2); border:1px solid var(--line-2); border-radius:999px; padding:10px 18px}
+.fin-x svg.i{width:16px; height:16px}
+.fin-x:hover{border-color:var(--rosa); color:var(--rosa)}
+.fin-b section{border-bottom:0; padding-block:34px 70px}
+.fin-b section.fin-off{display:none}
+.fin .rv{opacity:1!important; transform:none!important}
+.mdl-info .cmp .split{display:grid; grid-template-columns:1fr; gap:10px; margin:0}
+.mdl-info .cmp .pane{background:var(--s2); border:1px solid var(--line); border-radius:8px; padding:14px 16px}
+.mdl-info .cmp .pane h4{font-size:15px; margin-bottom:10px; display:flex; flex-wrap:wrap; align-items:center; gap:8px}
+.mdl-info .cmp .pane.c h4{color:var(--cian)} .mdl-info .cmp .pane.v h4{color:var(--violeta)}
+@media print{.dock{display:none}}
 </style>
 </head>
 <body>
@@ -1386,25 +1426,21 @@ body.resumen section .note{display:none}
 </header>
 
 <nav class="toc"><div class="wrap">
-  <a href="#clave">01 &middot; La clave</a>
-  <a href="#modelos">02 &middot; Modelos</a>
-  <a href="#origen">03 &middot; Origen</a>
-  <a href="#precios">04 &middot; Precios</a>
-  <a href="#cara">05 &middot; Cara a cara</a>
-  <a href="#consumo">06 &middot; Consumo</a>
-  <a href="#prendario">07 &middot; Prendario</a>
-  <a href="#ahorro">08 &middot; Plan de ahorro</a>
-  <a href="#verificacion">09 &middot; Verificaci&oacute;n</a>
-  <a href="#contradicciones">10 &middot; Contradicciones</a>
-  <a href="#linea">11 &middot; Cronolog&iacute;a</a>
-  <a href="#futuro">12 &middot; 2027</a>
-  <a href="#videos">13 &middot; Los videos</a>
-  <a href="#prensa">14 &middot; Prensa</a>
-  <a href="#metodo">15 &middot; M&eacute;todo</a>
+  <a href="#modelos">01 &middot; Modelos</a>
+  <a href="#precios">02 &middot; Precios</a>
+  <a href="#cara">03 &middot; Cara a cara</a>
+  <a href="#consumo">04 &middot; Consumo</a>
+  <a href="#verificacion">05 &middot; Verificaci&oacute;n</a>
+  <a href="#contradicciones">06 &middot; Contradicciones</a>
+  <a href="#linea">07 &middot; Cronolog&iacute;a</a>
+  <a href="#futuro">08 &middot; 2027</a>
+  <a href="#videos">09 &middot; Los videos</a>
+  <a href="#prensa">10 &middot; Prensa</a>
+  <a href="#metodo">11 &middot; M&eacute;todo</a>
   <button type="button" class="vtog" id="vtog" aria-pressed="true">Vista resumida</button>
 </div></nav>
 
-<section id="clave"><div class="wrap">
+<section id="clave" hidden><div class="wrap">
   <div class="ico c"><svg class="i"><use href="#i-split"/></svg></div>
   <p class="lab rv">01 — Lo primero</p>
   <h2>Kicks y Kait: dos autos distintos</h2>
@@ -1444,7 +1480,7 @@ body.resumen section .note{display:none}
 
 <section id="modelos"><div class="wrap">
   <div class="ico v"><svg class="i"><use href="#i-car"/></svg></div>
-  <p class="lab rv">02 — Síntesis</p>
+  <p class="lab rv">01 — Síntesis</p>
   <h2>Veredicto por modelo</h2>
   <p class="lede">Destilado de los videos que aplican. El precio es el más bajo de la gama en septiembre de 2026, ya con bonificaciones.</p>
 
@@ -1537,7 +1573,7 @@ body.resumen section .note{display:none}
         <div class="spec"><span class="k">Frenada medida</span><span class="d"></span><span class="v">44,7 m</span></div>
         <div class="spec"><span class="k">Modelo 2027</span><span class="d"></span><span class="v">Ya en producción</span></div>
         <div class="spec"><span class="k">Es el del plan</span><span class="d"></span><span class="v">Sense · 80/20 · 120</span></div>
-        <p style="margin-top:12px">La recomendación concreta de la playlist es comprar la caja manual, porque la CVT desaprovecha buena parte de los 118 CV. Y es el único modelo de la gama con un reemplazo ya fabricándose: ver las secciones 11 y 12.</p>
+        <p style="margin-top:12px">La recomendación concreta de la playlist es comprar la caja manual, porque la CVT desaprovecha buena parte de los 118 CV. Y es el único modelo de la gama con un reemplazo ya fabricándose: ver las secciones 07 y 08.</p>
       </div></div></div>
     </article>
 
@@ -1566,7 +1602,7 @@ body.resumen section .note{display:none}
   </div>
 </div></section>
 
-<section id="origen"><div class="wrap">
+<section id="origen" hidden><div class="wrap">
   <div class="ico v rv"><svg class="i"><use href="#i-factory"/></svg></div>
   <p class="lab rv">03 — De dónde vienen</p>
   <h2 class="rv">Origen de fabricación</h2>
@@ -1609,7 +1645,7 @@ body.resumen section .note{display:none}
 
 <section id="precios"><div class="wrap">
   <div class="ico c"><svg class="i"><use href="#i-bars"/></svg></div>
-  <p class="lab rv">04 — Contado</p>
+  <p class="lab rv">02 — Contado</p>
   <h2>Precios de septiembre 2026</h2>
   <p class="lede">Lista sugerida de Nissan Argentina, IVA incluido, sin flete ni patentamiento. Donde hay bonificación se muestra el precio final.</p>
 
@@ -1635,7 +1671,7 @@ body.resumen section .note{display:none}
 
 <section id="cara"><div class="wrap">
   <div class="ico r rv"><svg class="i"><use href="#i-split"/></svg></div>
-  <p class="lab rv">05 — Cara a cara</p>
+  <p class="lab rv">03 — Cara a cara</p>
   <h2 class="rv">Dónde la gama choca contra sí misma</h2>
   <p class="lede rv">Ninguno de los videos hace esta cuenta, porque cada uno prueba un auto por vez. Puestos los cinco modelos en la misma tabla con los precios de septiembre, aparecen cuatro cruces donde dos versiones distintas cuestan casi lo mismo. En tres de los cuatro, la elección es obvia y no es la que uno esperaría.</p>
 
@@ -1925,7 +1961,7 @@ body.resumen section .note{display:none}
 
   <div class="note rv" style="margin-top:16px;border-left-color:var(--rosa)">
     <svg class="i" style="color:var(--rosa)"><use href="#i-alert"/></svg>
-    <div><b>Acá es donde esto deja de ser una nota de precios y pasa a tocar la sección 08.</b> El valor móvil de un plan de ahorro es el precio de lista, no el bonificado. Sobre el Versa da igual, porque no tiene bonificación. Sobre el Sentra no da nada igual: quien lo tenga suscripto paga cuota sobre $43.990.000, $48.990.000 o $49.990.000 según la versión, mientras el de al lado lo compra de contado por cinco, siete u ocho millones menos. La prueba escrita del Kait lo dice sin vueltas: «seguro, patente e impuestos se pagan sobre el precio de lista. Y sí, los llamados planes de ahorro también».</div>
+    <div><b>Acá es donde esto deja de ser una nota de precios y pasa a tocar el plan de ahorro.</b> El valor móvil de un plan de ahorro es el precio de lista, no el bonificado. Sobre el Versa da igual, porque no tiene bonificación. Sobre el Sentra no da nada igual: quien lo tenga suscripto paga cuota sobre $43.990.000, $48.990.000 o $49.990.000 según la versión, mientras el de al lado lo compra de contado por cinco, siete u ocho millones menos. La prueba escrita del Kait lo dice sin vueltas: «seguro, patente e impuestos se pagan sobre el precio de lista. Y sí, los llamados planes de ahorro también».</div>
   </div>
 
   <div class="note rv" style="margin-top:12px">
@@ -1981,7 +2017,7 @@ body.resumen section .note{display:none}
 
 <section id="consumo"><div class="wrap">
   <div class="ico a rv"><svg class="i"><use href="#i-fuel"/></svg></div>
-  <p class="lab rv">06 — El costo de usarlo</p>
+  <p class="lab rv">04 — El costo de usarlo</p>
   <h2 class="rv">1.6 contra 2.0, litro por litro</h2>
   <p class="lede rv">La intuición dice que el motor más chico gasta menos. Acá no pasa eso, y el punto donde se da vuelta está medido: son exactamente 120 km/h. Todo lo que sigue sale de la única publicación que probó los dos autos con la misma metodología, más cinco mediciones independientes del Sentra que sirven para saber cuánta confianza tenerle a cada número.</p>
 
@@ -2171,7 +2207,7 @@ body.resumen section .note{display:none}
 
 <section id="prendario"><div class="wrap">
   <div class="ico v"><svg class="i"><use href="#i-calc"/></svg></div>
-  <p class="lab rv">07 — Financiación 1 de 2</p>
+  <p class="lab rv">Financiación · crédito prendario</p>
   <h2>Crédito prendario</h2>
   <p class="lede">Sistema francés de cuota fija. Elegí el modelo, movés anticipo y plazo, y cambiás la tasa entre las ofertas reales de septiembre de 2026.</p>
 
@@ -2237,7 +2273,7 @@ body.resumen section .note{display:none}
 
 <section id="ahorro"><div class="wrap">
   <div class="ico a rv"><svg class="i"><use href="#i-money"/></svg></div>
-  <p class="lab rv">08 — Financiación 2 de 2</p>
+  <p class="lab rv">Financiación · plan de ahorro</p>
   <h2 class="rv">Plan de ahorro, con una solicitud real sobre la mesa</h2>
   <p class="lede rv">Todo lo que sigue sale de una solicitud firmada el 21 de septiembre de 2026 en un concesionario oficial de Mendoza, más las anotaciones a mano del asesor. Los datos personales no están: no hacen falta para entender el mecanismo. Los números sí, porque son los que hay que poder revisar dentro de ocho años.</p>
 
@@ -2368,7 +2404,7 @@ body.resumen section .note{display:none}
 
   <div class="note rv" style="margin-top:14px;border-left-color:var(--rosa)">
     <svg class="i" style="color:var(--rosa)"><use href="#i-alert"/></svg>
-    <div><b>Y acá hay un problema que la hoja no dice.</b> Los $7.200.000 anotados para pasar al Sentra dan $41.842.200, que es su precio <b>bonificado</b> de septiembre. El de lista es entre $43.990.000 y $49.990.000 según la versión, porque el Sentra se vende con cinco, siete u ocho millones de descuento comercial. Si al adjudicar la diferencia se calcula sobre lista, como manda el reglamento para el valor móvil, el mismo cambio pasa a costar entre $9.347.800 y $14.347.800. La sección 05 tiene la tabla completa de precios de lista contra precios bonificados de toda la gama: es la cuenta que hay que rehacer antes de enero.</div>
+    <div><b>Y acá hay un problema que la hoja no dice.</b> Los $7.200.000 anotados para pasar al Sentra dan $41.842.200, que es su precio <b>bonificado</b> de septiembre. El de lista es entre $43.990.000 y $49.990.000 según la versión, porque el Sentra se vende con cinco, siete u ocho millones de descuento comercial. Si al adjudicar la diferencia se calcula sobre lista, como manda el reglamento para el valor móvil, el mismo cambio pasa a costar entre $9.347.800 y $14.347.800. La sección 03 tiene la tabla completa de precios de lista contra precios bonificados de toda la gama: es la cuenta que hay que rehacer antes de enero.</div>
   </div>
 
   <h3 style="font-size:19px;margin:34px 0 6px" class="rv">Cuánto cuesta el sistema</h3>
@@ -2385,9 +2421,9 @@ body.resumen section .note{display:none}
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:14px;margin-top:16px" class="rv">
     <div class="card"><h4 style="font-size:14px;margin-bottom:9px">Por qué 5,93 % en diez años no es lo mismo que una tasa baja</h4>
-      <p style="margin:0;font-size:13.5px;color:var(--ink-2)">Porque el capital no está congelado: está indexado al precio del auto. El plan no es un préstamo barato, es un ahorro en unidades de Versa. Gana si el auto aumenta más que la tasa del prendario y pierde si aumenta menos. Ese 5,93 % es lo que se paga por el seguro de cambio, no por el dinero. Comparalo con el simulador de la sección 07: ninguna tasa de plaza se acerca.</p></div>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-2)">Porque el capital no está congelado: está indexado al precio del auto. El plan no es un préstamo barato, es un ahorro en unidades de Versa. Gana si el auto aumenta más que la tasa del prendario y pierde si aumenta menos. Ese 5,93 % es lo que se paga por el seguro de cambio, no por el dinero. Comparalo con el simulador de crédito prendario: ninguna tasa de plaza se acerca.</p></div>
     <div class="card"><h4 style="font-size:14px;margin-bottom:9px">La letra que más duele: lista contra bonificado</h4>
-      <p style="margin:0;font-size:13.5px;color:var(--ink-2)">El valor móvil es el precio de lista, no el que se negocia en el salón. Las secciones 04 y 05 documentan bonificaciones de entre 5,5 y 6,7 millones en la Kicks. Quien está en plan paga cuota sobre el número alto mientras el de contado compra por el bajo. En el Versa la brecha hoy es chica; no hay garantía de que siga así.</p></div>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-2)">El valor móvil es el precio de lista, no el que se negocia en el salón. Las secciones 02 y 03 documentan bonificaciones de entre 5,5 y 6,7 millones en la Kicks. Quien está en plan paga cuota sobre el número alto mientras el de contado compra por el bajo. En el Versa la brecha hoy es chica; no hay garantía de que siga así.</p></div>
     <div class="card"><h4 style="font-size:14px;margin-bottom:9px">Qué pasa si se deja de pagar</h4>
       <p style="margin:0;font-size:13.5px;color:var(--ink-2)">Antes de adjudicar, el plan se rescinde solo con tres cuotas impagas, consecutivas o no, y se puede reactivar pagando lo adeudado. Si no se reactiva, el haber neto se devuelve recién cuando se liquida el grupo, que en un plan a 120 meses puede ser dentro de una década. La plata no vuelve cuando uno quiere.</p></div>
     <div class="card"><h4 style="font-size:14px;margin-bottom:9px">El riesgo que no está en el contrato</h4>
@@ -2408,7 +2444,7 @@ body.resumen section .note{display:none}
 
 <section id="verificacion"><div class="wrap">
   <div class="ico c"><svg class="i"><use href="#i-search"/></svg></div>
-  <p class="lab rv">09 — El contraste</p>
+  <p class="lab rv">05 — El contraste</p>
   <h2>Las afirmaciones</h2>
   <p class="lede">Veintidós afirmaciones que aparecen en los videos, contrastadas con fichas oficiales, organismos de ensayo, expedientes judiciales, pruebas escritas independientes y entre las propias reseñas. Las seis últimas son el contraste con lo que midió la prensa escrita, que probó los mismos autos con cronómetro y sin cámara.</p>
 
@@ -2635,7 +2671,7 @@ body.resumen section .note{display:none}
 
 <section id="contradicciones"><div class="wrap">
   <div class="ico r"><svg class="i"><use href="#i-split"/></svg></div>
-  <p class="lab rv">10 — Choques</p>
+  <p class="lab rv">06 — Choques</p>
   <h2>Dónde se contradicen</h2>
   <p class="lede">Casi todas las contradicciones de la playlist tienen explicación. Ninguna es un error de quien reseña.</p>
 
@@ -2666,7 +2702,7 @@ body.resumen section .note{display:none}
       <div class="mid">VS</div>
       <div class="side s-vid"><b>Los seis videos del Sentra</b>El único modelo sin detractores de toda la playlist. Mejores cifras medidas de la gama. Ninguno lo compara contra el Versa.</div>
     </div>
-    <div class="resolve"><b><svg class="i"><use href="#i-check"/></svg>Resolución</b>No hay contradicción porque no hay conversación: diez videos sobre dos sedanes de la misma marca y ni uno solo los pone al lado. Puestos en la misma tabla, el Versa tope cuesta más que el Sentra tope. La playlist no puede detectarlo porque su unidad de análisis es el modelo, no la gama. Está desarrollado en la sección 05.</div>
+    <div class="resolve"><b><svg class="i"><use href="#i-check"/></svg>Resolución</b>No hay contradicción porque no hay conversación: diez videos sobre dos sedanes de la misma marca y ni uno solo los pone al lado. Puestos en la misma tabla, el Versa tope cuesta más que el Sentra tope. La playlist no puede detectarlo porque su unidad de análisis es el modelo, no la gama. Está desarrollado en la sección 03.</div>
   </div>
 
   <div class="contra rv">
@@ -2682,7 +2718,7 @@ body.resumen section .note{display:none}
 
 <section id="linea"><div class="wrap">
   <div class="ico c rv"><svg class="i"><use href="#i-route"/></svg></div>
-  <p class="lab rv">11 — Cronología</p>
+  <p class="lab rv">07 — Cronología</p>
   <h2 class="rv">Diez años en una línea</h2>
   <p class="lede rv">De la primera Kicks salida de Resende a la última cuota del plan firmado en septiembre. Dos historias que en el papel no tienen nada que ver y que en la práctica terminan cruzándose en enero de 2027.</p>
 
@@ -2775,7 +2811,7 @@ body.resumen section .note{display:none}
 
 <section id="futuro"><div class="wrap">
   <div class="ico v rv"><svg class="i"><use href="#i-spark"/></svg></div>
-  <p class="lab rv">12 — Lo que viene</p>
+  <p class="lab rv">08 — Lo que viene</p>
   <h2 class="rv">Qué cambia en 2027</h2>
   <p class="lede rv">Ninguno de los videos habla de esto, porque todos se grabaron sobre el producto que está en el salón. Pero un plan de ahorro a diez años y una decisión de compra en enero se toman contra lo que viene, no contra lo que hay. Esto es lo que está confirmado, lo que es probable y lo que todavía es conversación.</p>
 
@@ -2790,7 +2826,7 @@ body.resumen section .note{display:none}
     <div class="nx">
       <span class="yr">27</span>
       <h4>Versa, la llegada al país</h4>
-      <p>Se presentó en marzo, entró en producción en serie en julio y ya se lanzó en mercados vecinos. Para la Argentina, la ventana que manejan las fuentes del sector va de fines de 2026 a comienzos de 2027, sin anuncio oficial local. Es exactamente el período en el que se abre la adjudicación pactada del plan de la sección 08.</p>
+      <p>Se presentó en marzo, entró en producción en serie en julio y ya se lanzó en mercados vecinos. Para la Argentina, la ventana que manejan las fuentes del sector va de fines de 2026 a comienzos de 2027, sin anuncio oficial local. Es exactamente el período en el que se abre la adjudicación pactada del plan de ahorro.</p>
       <span class="st prob"><svg class="i"><use href="#i-wave"/></svg>Probable · sin confirmación local</span>
     </div>
 
@@ -2838,7 +2874,7 @@ body.resumen section .note{display:none}
 
 <section id="videos"><div class="wrap">
   <div class="ico c"><svg class="i"><use href="#i-film"/></svg></div>
-  <p class="lab rv">13 — El índice</p>
+  <p class="lab rv">09 — El índice</p>
   <h2>Los videos que aplican: 18 de la playlist y 5 traducidos</h2>
   <p class="lede">Solo quedan los que se centran en el modelo, la plataforma y la versión que llega a la Argentina: Kicks y Kait vienen de Brasil; Versa, Sentra y Frontier, de México. Los que prueban otro motor, otra plataforma o datos que no se cumplieron quedan fuera del índice y se citan, a título informativo, en Método. Sumamos cinco videos en portugués e inglés que sí aplican, traducidos. Los títulos enlazan al video original.</p>
   <div class="apsum rv">
@@ -2859,7 +2895,7 @@ body.resumen section .note{display:none}
 
 <section id="prensa"><div class="wrap">
   <div class="ico v"><svg class="i"><use href="#i-doc"/></svg></div>
-  <p class="lab rv">14 — Prensa profesional</p>
+  <p class="lab rv">10 — Prensa profesional</p>
   <h2>Lo que dicen los periodistas de la industria</h2>
   <p class="lede">Ocho pruebas de medios especializados de Estados Unidos, Canadá, Brasil y Australia, traducidas al español y resumidas con palabras propias. Cada una lleva la misma marca de aplicabilidad que los videos.</p>
   <div class="prg" id="prensaList"></div>
@@ -2868,7 +2904,7 @@ body.resumen section .note{display:none}
 
 <section id="metodo" style="border-bottom:0"><div class="wrap">
   <div class="ico a"><svg class="i"><use href="#i-doc"/></svg></div>
-  <p class="lab rv">15 — Cómo se hizo</p>
+  <p class="lab rv">11 — Cómo se hizo</p>
   <h2>Método y fuentes</h2>
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:14px;margin-bottom:24px">
@@ -2879,7 +2915,7 @@ body.resumen section .note{display:none}
     <div class="card"><h4 style="font-size:14px;margin-bottom:9px">Las miniaturas y el reproductor</h4>
       <p style="margin:0;font-size:13.5px;color:var(--ink-2)">Las imágenes de las tarjetas son fotogramas de portada de cada video, incrustados dentro de este archivo para que funcione sin conexión. Al reproducir, el player carga desde el dominio sin cookies de YouTube y el video se sirve desde el canal original, con su vista contabilizada a su autor. Ningún video está alojado acá.</p></div>
     <div class="card"><h4 style="font-size:14px;margin-bottom:9px">Los datos del plan</h4>
-      <p style="margin:0;font-size:13.5px;color:var(--ink-2)">La sección 08 reconstruye una solicitud real firmada el 21 de septiembre de 2026 y las anotaciones manuscritas de esa operación. Se omitieron nombres, firmas, número de solicitud y todo dato de contacto: no aportan nada al análisis. Los importes se verificaron contra el plan comercial publicado por la marca, que para septiembre de 2026 publica $315.882 y $262.053 donde la solicitud redondea a $314.000 y $260.000.</p></div>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-2)">El plan de ahorro reconstruye una solicitud real firmada el 21 de septiembre de 2026 y las anotaciones manuscritas de esa operación. Se omitieron nombres, firmas, número de solicitud y todo dato de contacto: no aportan nada al análisis. Los importes se verificaron contra el plan comercial publicado por la marca, que para septiembre de 2026 publica $315.882 y $262.053 donde la solicitud redondea a $314.000 y $260.000.</p></div>
     <div class="card"><h4 style="font-size:14px;margin-bottom:9px">Videos descartados, a título informativo</h4><p style="margin:0 0 10px;font-size:13.5px;color:var(--ink-2)">Quince videos de la playlist no figuran en el índice: no corresponden al auto que se vende en la Argentina o no aportan nada nuevo. Se citan acá como referencia.</p><ul id="descartados" style="margin:0;padding-left:18px;font-size:13.5px;color:var(--ink-2);line-height:1.7"></ul></div>
     <div class="card"><h4 style="font-size:14px;margin-bottom:9px">Qué no se pudo verificar</h4>
       <p style="margin:0;font-size:13.5px;color:var(--ink-2)">No hay datos públicos de patentamiento por modelo, así que ninguna afirmación sobre ventas se pudo contrastar. Tampoco hay ensayos de Latin NCAP del Kait ni del Sentra. Las percepciones de manejo o diseño no se evalúan: se reportan y se contrastan entre sí.</p></div>
@@ -2938,6 +2974,22 @@ body.resumen section .note{display:none}
   </footer>
 </div></section>
 
+<nav class="dock" aria-label="Financiaci&oacute;n">
+  <span class="dock-l">Financiaci&oacute;n</span>
+  <button type="button" data-fin="prendario"><svg class="i"><use href="#i-money"/></svg>Cr&eacute;dito prendario</button>
+  <button type="button" data-fin="ahorro"><svg class="i"><use href="#i-calc"/></svg>Plan de ahorro</button>
+</nav>
+<div class="fin" id="fin" hidden role="dialog" aria-modal="true" aria-label="Financiaci&oacute;n">
+  <header class="fin-h"><div class="wrap">
+    <b class="fin-tt">Financiaci&oacute;n</b>
+    <div class="fin-t" role="tablist">
+      <button type="button" role="tab" data-tab="prendario"><svg class="i"><use href="#i-money"/></svg>Cr&eacute;dito prendario</button>
+      <button type="button" role="tab" data-tab="ahorro"><svg class="i"><use href="#i-calc"/></svg>Plan de ahorro</button>
+    </div>
+    <button type="button" class="fin-x" id="finX"><svg class="i"><use href="#i-x"/></svg>Cerrar</button>
+  </div></header>
+  <div class="fin-b" id="finBody"></div>
+</div>
 <div class="lb" id="lb" data-open="false" role="dialog" aria-modal="true" aria-label="Ficha de la reseña">
   <div class="lb-in">
     <button type="button" class="lb-x" id="lbX" aria-label="Cerrar ficha"><svg class="i"><use href="#i-x"/></svg></button>
@@ -3247,7 +3299,7 @@ if("IntersectionObserver" in window && !reduce){
     prog.style.width=Math.min(y/max*100,100)+"%";
     up.classList.toggle("on", y>700);
     var act=null;
-    secs.forEach(function(s){ if(s.getBoundingClientRect().top<=140) act=s.id; });
+    secs.forEach(function(s){ if(!s.offsetHeight) return; if(s.getBoundingClientRect().top<=140) act=s.id; });
     links.forEach(function(a){
       a.setAttribute("aria-current", String(a.getAttribute("href")==="#"+act));
     });
@@ -3348,7 +3400,7 @@ var SPECS={
   q:"Fichas oficiales de ambos modelos. Ojo con comparar baúles entre marcas: el video de Gonzalo, citado en Método, documenta que Nissan mide hasta el techo y otras marcas hasta los respaldos.",vid:"hUnMa1jA7cY"},
 
  tanque:{t:"Tanque",qa:"Versa",a:"41 l",qb:"Sentra",b:"47 l",win:"b",f:"of",
-  p:"Seis litros que en ruta se transforman en <b>255 kilómetros más de autonomía</b>, porque el Sentra además consume menos a 100 km/h. En un viaje de 1.500 kilómetros eso es la diferencia entre parar una vez o parar dos. Está desarrollado en la sección 06.",
+  p:"Seis litros que en ruta se transforman en <b>255 kilómetros más de autonomía</b>, porque el Sentra además consume menos a 100 km/h. En un viaje de 1.500 kilómetros eso es la diferencia entre parar una vez o parar dos. Está desarrollado en la sección 04.",
   q:"Fichas oficiales; las autonomías son cálculo propio sobre consumos medidos.",vid:""},
 
  llantas:{t:"Llantas",qa:"Versa",a:"17\"",qb:"Sentra SR",b:"18\" · 215/45",win:"",f:"of",
@@ -4128,6 +4180,67 @@ document.addEventListener("click",function(e){
     return '<li><b>'+esc(v.c)+'</b> · <a href="'+ytUrl(v.id)+'" target="_blank" rel="noopener">'+esc(v.t)+'</a>. '+esc(v.nota)+'</li>';
   }).join("");
 })();
+
+
+/* =====================================================================
+   v3i — una página principal, fichas con año y origen, zócalo de financiación
+   ===================================================================== */
+/* ---------- financiación: las dos secciones viven en una página aparte ---------- */
+(function(){
+  var fin=document.getElementById("fin"), body=document.getElementById("finBody"); if(!fin||!body) return;
+  ["prendario","ahorro"].forEach(function(id){ var s=document.getElementById(id); if(s) body.appendChild(s); });
+  var tabs=[].slice.call(fin.querySelectorAll("[data-tab]"));
+  var cur="prendario";
+  function mostrar(t){
+    cur=t;
+    ["prendario","ahorro"].forEach(function(id){ var s=document.getElementById(id); if(s) s.classList.toggle("fin-off",id!==t); });
+    tabs.forEach(function(b){ var on=b.dataset.tab===t; b.setAttribute("aria-selected",String(on)); b.classList.toggle("on",on); });
+    fin.scrollTop=0;
+  }
+  function abrir(t){
+    mostrar(t||cur); fin.hidden=false; document.body.classList.add("fin-open"); document.body.style.overflow="hidden";
+    document.querySelectorAll("[data-fin]").forEach(function(b){ b.classList.toggle("on",b.dataset.fin===cur); });
+    var x=document.getElementById("finX"); if(x) x.focus();
+  }
+  function cerrar(){
+    fin.hidden=true; document.body.classList.remove("fin-open"); document.body.style.overflow="";
+    document.querySelectorAll("[data-fin]").forEach(function(b){ b.classList.remove("on"); });
+  }
+  document.addEventListener("click",function(e){
+    var d=e.target.closest("[data-fin]"); if(d){ abrir(d.dataset.fin); return; }
+    var t=e.target.closest("#fin [data-tab]"); if(t){ mostrar(t.dataset.tab); document.querySelectorAll("[data-fin]").forEach(function(b){ b.classList.toggle("on",b.dataset.fin===cur); }); return; }
+    if(e.target.closest("#finX")) cerrar();
+  });
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"&&!fin.hidden&&lb.dataset.open!=="true") cerrar();
+  });
+})();
+
+/* ---------- fichas de modelo: año, origen y, para Kicks y Kait, la diferencia entre los dos ---------- */
+var META={
+  "Kicks":[["Año","Nuevo Kicks · se fabrica desde abril de 2025"],["Fábrica","Resende, Brasil"],["Ingreso al país","Mercosur · sin el arancel del 35 %"]],
+  "Kait":[["Año","Kait MY26 · se lanzó en la Argentina en abril de 2026"],["Fábrica","Resende, Brasil"],["Ingreso al país","Mercosur · sin el arancel del 35 %"]],
+  "Versa":[["Año","Versa actual · el rediseño 2027 ya está en producción"],["Fábrica","Aguascalientes, México"],["Ingreso al país","Acuerdo con México · con cupos"]],
+  "Sentra":[["Año","Sentra MY24 · el nuevo 2027 todavía no llegó"],["Fábrica","Aguascalientes, México"],["Ingreso al país","Acuerdo con México · con cupos"]],
+  "Frontier":[["Año","La D27 se fabrica desde abril de 2026; lo que se vende hoy es stock de la anterior"],["Fábrica","Santa Isabel (cerrada el 9-10-2025), ahora Aguascalientes"],["Ingreso al país","Acuerdo con México · con cupos"]]
+};
+var _modalModelo0=modalModelo;
+modalModelo=function(card){
+  _modalModelo0(card);
+  var nm=card.querySelector("h3").textContent.trim(), info=lbBody.querySelector(".mdl-info"); if(!info) return;
+  var m=META[nm];
+  if(m){
+    var tiles='<div class="tiles" style="margin:2px 0 4px">'+m.map(function(x){return '<div><b style="font-size:15.5px;line-height:1.4">'+esc(x[1])+'</b><em>'+x[0]+'</em></div>'}).join("")+'</div>';
+    var p=info.querySelector(":scope > p"); if(p) p.insertAdjacentHTML("beforebegin",'<h4 class="mdl-sec">Año y origen</h4>'+tiles);
+  }
+  if(nm==="Kicks"||nm==="Kait"){
+    var src=document.getElementById("clave"); if(!src) return;
+    var kb=src.querySelector(".keybox"), note=src.querySelector(".note div"), lede=src.querySelector(".lede");
+    info.insertAdjacentHTML("beforeend",'<h4 class="mdl-sec">Kicks y Kait: dos autos distintos</h4>'+
+      (lede?'<p>'+lede.innerHTML+'</p>':'')+(kb?'<div class="cmp">'+kb.querySelector(".split").outerHTML+'</div>':'')+
+      (note?'<p>'+note.innerHTML+'</p>':''));
+  }
+};
 
 </script>
 </body>
